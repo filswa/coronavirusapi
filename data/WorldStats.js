@@ -27,15 +27,12 @@ function scanForData(data){
     let previousCountry = "";
     worldData.lastUpdate = data[0][2];
 
-    
     for(i = 0; i < data.length; i++){
         worldData.confirmed += parseInt(data[i][3],10);
         worldData.deaths += parseInt(data[i][4], 10);
         worldData.recovered += parseInt(data[i][5], 10);
         worldData.countriesAffected += countCountries(previousCountry, data[i][1]);
         previousCountry = data[i][1];
-        console.log(worldData);
-        console.log();
     }
 }
 
