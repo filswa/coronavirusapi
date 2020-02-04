@@ -8,12 +8,6 @@ let worldData = {
     lastUpdate: "undefined"
 }
 
-function getWorldData () {
-    let virusData = DataFetch.getVirusData();
-    scanForData(virusData);
-    return worldData;
-} 
-
 /*  Data structure in response:
     arr[0] - province/state
     arr[1] - country
@@ -23,7 +17,7 @@ function getWorldData () {
     arr[5] - recovered
 */
 function scanForData(data){
-    //console.log("scan fun data: " + JSON.stringify(data));
+    console.log("scan fun data: " + JSON.stringify(data));
     let previousCountry = "";
     worldData.lastUpdate = data[0][2];
 
@@ -41,5 +35,4 @@ function countCountries(previousCountry, currentCountry){
     return (previousCountry == currentCountry) ? 0 : 1;
 }
 
-module.exports.getWorldData = getWorldData;
 module.exports.scanForData = scanForData;
