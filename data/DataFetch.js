@@ -10,7 +10,7 @@ function FetchDataFromCsv(){
             complete: function(results){
                 virusData = results.data;
                 removeMetaData(virusData);
-                console.log(virusData);
+                console.log("Fetched virusData " + JSON.stringify(virusData));
                 let worldData = WorldStats.scanForData(virusData);
                 console.log(worldData);
                 DataStore.setWorldData(worldData);

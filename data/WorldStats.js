@@ -7,7 +7,6 @@ let worldData = {
     countriesAffected: 0,
     lastUpdate: "undefined"
 }
-//let confirmed, deaths, recovered, countriesAffected, lastUpdate;
 
 function getWorldData () {
     let virusData = DataFetch.getVirusData();
@@ -24,7 +23,7 @@ function getWorldData () {
     arr[5] - recovered
 */
 function scanForData(data){
-    console.log("scan fun data: " + data);
+    //console.log("scan fun data: " + JSON.stringify(data));
     let previousCountry = "";
     worldData.lastUpdate = data[0][2];
 
