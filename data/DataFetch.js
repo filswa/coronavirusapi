@@ -1,5 +1,8 @@
 const Papa = require('papaparse');
-let virusData;
+const DataStore = require('./DataStore');
+const WorldStats = require('./WorldStats');
+
+let virusData = {};
 
 function FetchDataFromCsv(){
     Papa.parse("https://docs.google.com/spreadsheets/d/1wQVypefm946ch4XDp37uZ-wartW4V7ILdg-qYiDXUHM/export?format=csv",{
@@ -7,6 +10,10 @@ function FetchDataFromCsv(){
             complete: function(results){
                 virusData = results.data;
                 removeMetaData(virusData);
+                console.log(virusData);
+                let worldData = WorldStats.scanForData(virusData);
+                console.log(worldData);
+                DataStore.setWorldData(worldData);
             }
         });
 }; FetchDataFromCsv();

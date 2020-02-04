@@ -24,6 +24,7 @@ function getWorldData () {
     arr[5] - recovered
 */
 function scanForData(data){
+    console.log("scan fun data: " + data);
     let previousCountry = "";
     worldData.lastUpdate = data[0][2];
 
@@ -34,6 +35,7 @@ function scanForData(data){
         worldData.countriesAffected += countCountries(previousCountry, data[i][1]);
         previousCountry = data[i][1];
     }
+    return worldData;
 }
 
 function countCountries(previousCountry, currentCountry){
@@ -41,3 +43,4 @@ function countCountries(previousCountry, currentCountry){
 }
 
 module.exports.getWorldData = getWorldData;
+module.exports.scanForData = scanForData;
