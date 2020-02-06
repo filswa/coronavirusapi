@@ -17,7 +17,7 @@ let worldData = {
     arr[5] - recovered
 */
 function scanForData(data){
-    console.log("scan fun data: " + JSON.stringify(data));
+    //console.log("scan fun data: " + JSON.stringify(data));
     let previousCountry = "";
     worldData.lastUpdate = data[0][2];
 

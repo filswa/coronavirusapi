@@ -12,11 +12,14 @@ app.use(function (req, res, next) {
 
 
 //Import Routes
-const placesRoute = require('./routes/places');
 const worldRoute = require('./routes/world');
+const placesRoute = require('./routes/places');
+//const placesIdRoute = require('./routes/placeId');
+
 
 app.use('/world', worldRoute);
 app.use('/places', placesRoute);
+//app.use('/places/:id', placesIdRoute);
 
 //ROUTES
 app.get('/', (req, res) => {
