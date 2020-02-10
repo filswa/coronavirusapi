@@ -14,16 +14,15 @@ app.use(function (req, res, next) {
 //Import Routes
 const worldRoute = require('./routes/world');
 const placesRoute = require('./routes/places');
-//const placesIdRoute = require('./routes/placeId');
-
+const countriesRoute = require('./routes/countries');
 
 app.use('/world', worldRoute);
 app.use('/places', placesRoute);
-//app.use('/places/:id', placesIdRoute);
+app.use('/countries', countriesRoute);
 
-//ROUTES
+// Home Route
 app.get('/', (req, res) => {
-    res.send('Home');
+    res.send('Welcome to Coronavirus Statistics API');
 })
 
 

@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     let country = req.query.country;
     let state = req.query.state;
     try {
-        let data = DataStore.getCountriesData();
+        let data = DataStore.getPlacesData();
 
         if(country !== undefined && state !== undefined){
             data = getDataFromBothQuery(data, country, state);
@@ -62,7 +62,7 @@ router.get('/:id', (req, res) => {
     console.log(req.params.id)
     try {
         let id = parseInt(req.params.id);
-        let allPlaces = DataStore.getCountriesData();
+        let allPlaces = DataStore.getPlacesData();
         let place = getPlaceById(allPlaces, id);
         console.log(place);
         if(place == undefined){

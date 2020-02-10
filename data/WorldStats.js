@@ -1,5 +1,3 @@
-const DataFetch = require ('../data/DataFetch');
-
 let worldData = {
     confirmed: 0,
     deaths: 0,
@@ -17,23 +15,28 @@ let worldData = {
     arr[5] - recovered
 */
 function scanForData(data){
+    data.sort(function(firstEl, secondEl){
+        if (firstEl[1].toLowerCase() < secondEl[1].toLowerCase()) return -1;
+        if (firstEl[1].toLowerCase() > secondEl[1].toLowerCase()) return 1;
+        return 0;
+    })
     //console.log("scan fun data: " + JSON.stringify(data));
-    console.log(data);
     let previousCountry = "";
     worldData.lastUpdate = data[0][2];
 
     // data.lenth-1 - temporary hacky workaround for last null element in data array
-    for(i = 0; i < data.length-1; i++){
+    for(i = 0; i < data.length; i++){
+        currentCountry = data[i][1];
         worldData.confirmed += parseInt(data[i][3],10);
         worldData.deaths += parseInt(data[i][4], 10);
         worldData.recovered += parseInt(data[i][5], 10);
-        worldData.countriesAffected += countCountries(previousCountry, data[i][1]);
+        worldData.countriesAffected += isPreviousCountryDuplicated(previousCountry, currentCountry);
         previousCountry = data[i][1];
     }
     return worldData;
 }
 
-function countCountries(previousCountry, currentCountry){
+function isPreviousCountryDuplicated(previousCountry, currentCountry){
     return (previousCountry == currentCountry) ? 0 : 1;
 }
 

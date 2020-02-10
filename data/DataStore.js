@@ -6,7 +6,9 @@ let worldData = {
     lastUpdate: "undefined"
 }
 
-let countriesData = {}
+let placesData = {};
+
+let countriesData = {};
 
 function getWorldData(){
     return worldData;
@@ -16,7 +18,17 @@ function setWorldData(data){
     worldData = data;
 }
 
+
+function getPlacesData(){
+    return placesData;
+}
+
+function setPlacesData(data){
+    placesData = data;
+}
+
 function getCountriesData(){
+	console.log(countriesData);
     return countriesData;
 }
 
@@ -24,10 +36,9 @@ function setCountriesData(data){
     countriesData = data;
 }
 
-// module.exports.worldData = worldData;
-// module.exports.countriesData = countriesData;
-
-module.exports.getCountriesData = getCountriesData;
-module.exports.setCountriesData = setCountriesData;
 module.exports.getWorldData = getWorldData;
 module.exports.setWorldData = setWorldData;
+module.exports.getPlacesData = getPlacesData;
+module.exports.setPlacesData = setPlacesData;
+module.exports.getCountriesData = getCountriesData;
+module.exports.setCountriesData = setCountriesData;
