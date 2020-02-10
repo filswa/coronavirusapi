@@ -7,10 +7,11 @@ let virusData = {};
 
 function FetchDataFromCsv(){
     console.log("Fetching data...");
-    Papa.parse("https://docs.google.com/spreadsheets/d/1wQVypefm946ch4XDp37uZ-wartW4V7ILdg-qYiDXUHM/export?format=csv",{
+    Papa.parse("https://raw.githubusercontent.com/CSSEGISandData/2019-nCoV/master/daily_case_updates/02-10-2020_1030.csv",{
             download: true,
             complete: function(results){
                 virusData = results.data;
+                //console.log(virusData);
                 removeMetaData(virusData);
 
                 let worldData = WorldStats.scanForData(virusData);

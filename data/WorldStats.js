@@ -18,10 +18,12 @@ let worldData = {
 */
 function scanForData(data){
     //console.log("scan fun data: " + JSON.stringify(data));
+    console.log(data);
     let previousCountry = "";
     worldData.lastUpdate = data[0][2];
 
-    for(i = 0; i < data.length; i++){
+    // data.lenth-1 - temporary hacky workaround for last null element in data array
+    for(i = 0; i < data.length-1; i++){
         worldData.confirmed += parseInt(data[i][3],10);
         worldData.deaths += parseInt(data[i][4], 10);
         worldData.recovered += parseInt(data[i][5], 10);
