@@ -5,17 +5,17 @@ const WorldStats = require('./WorldStats');
 const PlacesStats = require('./PlacesStats');
 const CountriesStats = require('./CountriesStats');
 
-let dataURL = ""
-let githubUrl = "https://github.com/CSSEGISandData/2019-nCoV/tree/master/daily_case_updates";
+let dataUrl = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/02-20-2020.csv";
 
 let virusData = {};
 
 function FetchDataFromCsv(){
     console.log("Fetching data...");
-    Papa.parse("https://raw.githubusercontent.com/CSSEGISandData/2019-nCoV/master/daily_case_updates/02-10-2020_1930.csv",{
+    Papa.parse(dataUrl,{
             download: true,
             complete: function(results){
                 virusData = results.data;
+                console.log(virusData);
                 removeMetaData(virusData);
                 removeUndefinedElements(virusData);
 
@@ -23,7 +23,6 @@ function FetchDataFromCsv(){
                 let placesData = PlacesStats.scanForData(virusData);
                 let countriesData = CountriesStats.scanForData(virusData);
 
-                // console.log(virusData);
                 // console.log(countriesData);
 
                 DataStore.setWorldData(worldData);
@@ -33,6 +32,7 @@ function FetchDataFromCsv(){
         });
 }; FetchDataFromCsv();
 
+// TODO: Periodical fetching of latest data
 function getlatestDataUrl(){
     Axios.get(githubUrl)
       .then(response => {
