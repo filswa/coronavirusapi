@@ -5,14 +5,16 @@ const WorldStats = require('./WorldStats');
 const PlacesStats = require('./PlacesStats');
 const CountriesStats = require('./CountriesStats');
 
-let dataURL = ""
-let githubUrl = "https://github.com/CSSEGISandData/2019-nCoV/tree/master/daily_case_updates";
+const githubUrl = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/";
 
 let virusData = {};
+let date = new Date();
 
-function FetchDataFromCsv(){
+async function FetchDataFromCsv(){
     console.log("Fetching data...");
-    Papa.parse("https://raw.githubusercontent.com/CSSEGISandData/2019-nCoV/master/daily_case_updates/02-10-2020_1930.csv",{
+    let dataUrl = await getLatestDataUrl(githubUrl)
+    console.log(dataUrl)
+    Papa.parse(dataUrl,{
             download: true,
             complete: function(results){
                 virusData = results.data;
@@ -33,15 +35,51 @@ function FetchDataFromCsv(){
         });
 }; FetchDataFromCsv();
 
-function getlatestDataUrl(){
-    Axios.get(githubUrl)
+async function getLatestDataUrl(githubUrl){
+    let date = new Date()
+
+    // Month formatted from 0-11
+    let month = date.getUTCMonth()+1
+    month = month.toString()
+
+    // Data published with 1 day delay
+    let day = date.getUTCDate()-1
+    day = day.toString()
+
+    let year = date.getUTCFullYear().toString()
+
+    // day/month URL must be 2 digits
+    if(day.length == 1){
+        day = "0" + day
+    }   
+    if(month.length == 1){
+        month = "0" + month
+    }
+
+    let dateString = getDateString(month, day, year)
+    let query = getQuery(dateString)
+    
+    query = await Axios.get(query)
       .then(response => {
-        console.log(response.data);
-        //return response.json();
+        console.log("success")
+        return query
       })
       .catch(error => {
-        console.log(error);
+        console.log("failure. get previous day")
+        day = (parseInt(day)-1).toString()
+        dateString = getDateString(month, day, year)
+        query = getQuery(dateString)
+        return query
       });
+      return query
+}
+
+function getDateString(month, day, year){
+    return `${month}-${day}-${year}`
+}
+
+function getQuery(dateString){
+    return githubUrl + dateString + ".csv"
 }
 
 function getVirusData(){

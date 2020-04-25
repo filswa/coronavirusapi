@@ -1,24 +1,27 @@
 let placesData = [];
 
 /*  Data structure in response:
-    arr[0] - province/state
-    arr[1] - country
-    arr[2] - lastUpdate
-    arr[3] - confirmed
-    arr[4] - deaths
-    arr[5] - recovered
+    arr[1] - city
+    arr[2] - province/state
+    arr[3] - country
+    arr[4] - lastUpdate
+    arr[7] - confirmed
+    arr[8] - deaths
+    arr[9] - recovered
+    arr[10] - active
+    arr[11] - key
 */
 function scanForData(data){
     //console.log("scan fun data: " + JSON.stringify(data));
     for(let i = 0; i < data.length; i++){
         placesData[i] = {
             id: i,
-            country: data[i][1],
-            state: data[i][0],
-            confirmed: parseInt(data[i][3],10),
-            deaths: parseInt(data[i][4], 10),
-            recovered: parseInt(data[i][5], 10),
-            lastUpdate: data[i][2]
+            country: data[i][3],
+            state: data[i][2],
+            confirmed: parseInt(data[i][5],10),
+            deaths: parseInt(data[i][6], 10),
+            recovered: parseInt(data[i][7], 10),
+            lastUpdate: data[i][4]
         }
     }
     return placesData;
