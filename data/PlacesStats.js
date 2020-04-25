@@ -18,9 +18,9 @@ function scanForData(data){
             id: i,
             country: data[i][3],
             state: data[i][2],
-            confirmed: parseInt(data[i][5],10),
-            deaths: parseInt(data[i][6], 10),
-            recovered: parseInt(data[i][7], 10),
+            confirmed: parseInt(data[i][7],10),
+            deaths: parseInt(data[i][8], 10),
+            recovered: parseInt(data[i][9], 10),
             lastUpdate: data[i][4]
         }
     }

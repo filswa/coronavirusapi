@@ -5,16 +5,14 @@ const router = express.Router();
 
 // GET all countries. Include query string
 router.get('/', (req, res) => {
-	console.log(req.query);
-	let country = req.query.country;
-	console.log(country);
+    let country = req.query.country;
+    console.log(req.query);
     try {
         let data = DataStore.getCountriesData();
 
         if(country != undefined){
             data = getDataFromCountryQuery(data, country);
         }
-        console.log(data);
 
         res.json({countries: data});        
     } catch (error) {
@@ -38,7 +36,6 @@ router.get('/:id', (req, res) => {
         let id = parseInt(req.params.id);
         let allCountries = DataStore.getCountriesData();
         let country = getCountryById(allCountries, id);
-        console.log(country);
         if(country == undefined){
             res.statusCode = 404;
             res.json();
@@ -59,6 +56,5 @@ function getCountryById(data, id){
     })
     return result;
 }
-
 
 module.exports = router;

@@ -22,7 +22,11 @@ app.use('/countries', countriesRoute);
 
 // Home Route
 app.get('/', (req, res) => {
-    res.send('Welcome to Coronavirus Statistics API');
+    res.send({
+        text: 'Welcome to Coronavirus Statistics API. Available endpoints:',
+        world: 'https://coronavirusapi.herokuapp.com/world',
+        countries: 'https://coronavirusapi.herokuapp.com/countries',
+        places: 'https://coronavirusapi.herokuapp.com/places'});
 })
 
 

@@ -7,17 +7,14 @@ const CountriesStats = require('./CountriesStats');
 
 const githubUrl = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/";
 
-let virusData = {};
-let date = new Date();
-
 async function FetchDataFromCsv(){
     console.log("Fetching data...");
     let dataUrl = await getLatestDataUrl(githubUrl)
-    console.log(dataUrl)
     Papa.parse(dataUrl,{
             download: true,
             complete: function(results){
                 virusData = results.data;
+                console.log(virusData);
                 removeMetaData(virusData);
                 removeUndefinedElements(virusData);
 
@@ -25,7 +22,6 @@ async function FetchDataFromCsv(){
                 let placesData = PlacesStats.scanForData(virusData);
                 let countriesData = CountriesStats.scanForData(virusData);
 
-                // console.log(virusData);
                 // console.log(countriesData);
 
                 DataStore.setWorldData(worldData);
