@@ -31,7 +31,7 @@ countries data
 	[
 		{
 			"id": 1,
-			"country": "Albania"
+			"country": "Albania",
 			"state": "",
 			"confirmed": 726,
 			"deaths": 28,
@@ -52,11 +52,11 @@ places data, including state/province
 
 ```json
 {
-	countries:
+	"places":
 	[
 		{
 			"id": 1,
-			"country": "Albania"
+			"country": "Albania",
 			"state": "",
 			"confirmed": 726,
 			"deaths": 28,
