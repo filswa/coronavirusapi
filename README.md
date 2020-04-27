@@ -7,9 +7,9 @@ It is available at: https://coronavirusapi.herokuapp.com/
 # endpoinds:
 The API is defined by three endpoinds:
 
-https://coronavirusapi.herokuapp.com/world
+##combined world stats
+**https://coronavirusapi.herokuapp.com/world**
 
-combined world data
 ```json
 {
 	"worldStats":
@@ -22,9 +22,10 @@ combined world data
 	}
 }
 ```
-https://coronavirusapi.herokuapp.com/countries
 
-countries data
+##countries stats
+**https://coronavirusapi.herokuapp.com/countries**
+
 ```json
 {
 	"countries":
@@ -46,9 +47,8 @@ Query parameter filtering available using country parameter
 
 example: https://coronavirusapi.herokuapp.com/countries?country=aus will return data for Austria and Australia
 
-https://coronavirusapi.herokuapp.com/places
-
-places data, including state/province
+##places data, including state/province
+**https://coronavirusapi.herokuapp.com/places**
 
 ```json
 {
