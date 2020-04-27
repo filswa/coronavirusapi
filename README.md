@@ -10,6 +10,7 @@ The API is defined by three endpoinds:
 https://coronavirusapi.herokuapp.com/world
 
 combined world data
+```json
 {
 	worldStats:
 	{
@@ -20,10 +21,11 @@ combined world data
 		lastUpdate
 	}
 }
-
+```
 https://coronavirusapi.herokuapp.com/countries
 
 countries data
+```json
 {
 	countries:
 	[
@@ -37,6 +39,7 @@ countries data
 		},
 	]
 }
+```
 
 Query parameter filtering available using country parameter
 
@@ -45,6 +48,8 @@ example: https://coronavirusapi.herokuapp.com/countries?country=aus will return 
 https://coronavirusapi.herokuapp.com/places
 
 places data, including state/province
+
+```json
 {
 	countries:
 	[
@@ -59,5 +64,6 @@ places data, including state/province
 		},
 	]
 }
+```
 
 Query parameter filtering available using country and state parameters.
