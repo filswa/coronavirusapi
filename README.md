@@ -10,33 +10,37 @@ The API is defined by three endpoinds:
 https://coronavirusapi.herokuapp.com/world
 
 combined world data
+```json
 {
-	worldStats:
+	"worldStats":
 	{
-		confirmed:
-		deaths:
-		recovered:
-		countriesAffected:
-		lastUpdate
+		"confirmed": 2971475,
+		"deaths": 206544,
+		"recovered": 865733,
+		"countriesAffected": 185,
+		"lastUpdate": "2020-04-27 02:30:33"
 	}
 }
-
+```
 https://coronavirusapi.herokuapp.com/countries
 
 countries data
+```json
 {
-	countries:
+	"countries":
 	[
 		{
-			id:
-			country:
-			confirmed:
-			deaths:
-			recovered:
-			lastUpdate:
+			"id": 1,
+			"country": "Albania"
+			"state": "",
+			"confirmed": 726,
+			"deaths": 28,
+			"recovered": 410,
+			"lastUpdate": "2020-04-27 02:30:33"
 		},
 	]
 }
+```
 
 Query parameter filtering available using country parameter
 
@@ -45,19 +49,22 @@ example: https://coronavirusapi.herokuapp.com/countries?country=aus will return 
 https://coronavirusapi.herokuapp.com/places
 
 places data, including state/province
+
+```json
 {
 	countries:
 	[
 		{
-			id:
-			country:
-			state:
-			confirmed:
-			deaths:
-			recovered:
-			lastUpdate:
+			"id": 1,
+			"country": "Albania"
+			"state": "",
+			"confirmed": 726,
+			"deaths": 28,
+			"recovered": 410,
+			"lastUpdate": "2020-04-27 02:30:33"
 		},
 	]
 }
+```
 
 Query parameter filtering available using country and state parameters.
