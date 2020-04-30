@@ -41,7 +41,7 @@ The API is defined by three endpoinds:
 			"recovered": 410,
 			"lastUpdate": "2020-04-27 02:30:33"
 		},
-	]
+	...]
 }
 ```
 
@@ -65,7 +65,7 @@ example: https://coronavirusapi.herokuapp.com/countries?country=aus will return 
 			"recovered": 410,
 			"lastUpdate": "2020-04-27 02:30:33"
 		},
-	]
+	...]
 }
 ```
 
