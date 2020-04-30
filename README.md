@@ -1,6 +1,8 @@
 # COVID-19 statistics API
 
-Below you can find some useful information about COVID-19 statistics API. It was build using node.js, Express, Axios and Papa Parse library for .csv parsing. The data is fetched from https://github.com/CSSEGISandData/COVID-19, provided by John Hopkins University CSSE. The API is hosted on heroku. 
+Below you can find some useful information about COVID-19 statistics API.
+
+It was build using **node.js**, **Express**, **Axios** and **Papa Parse** library for .csv parsing. The data is fetched from https://github.com/CSSEGISandData/COVID-19, provided by John Hopkins University CSSE. The API is hosted on heroku. 
 
 It is available at: https://coronavirusapi.herokuapp.com/ 
 
