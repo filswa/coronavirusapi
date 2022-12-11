@@ -9,7 +9,7 @@
   "author": "Filip Swacha",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "nodemon": "^2.0.2",
     "papaparse": "^5.1.1",
     "xhr2": "^0.2.0",
