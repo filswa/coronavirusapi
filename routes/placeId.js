@@ -4,7 +4,6 @@ const DataStore = require('../data/DataStore');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    console.log(req);
     try {
         let id = parseInt(req.param);
         let allPlaces = DataStore.getCountriesData();

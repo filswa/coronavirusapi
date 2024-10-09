@@ -5,7 +5,13 @@ const WorldStats = require('./WorldStats');
 const PlacesStats = require('./PlacesStats');
 const CountriesStats = require('./CountriesStats');
 
-const githubUrl = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/";
+/*  John Hopkins University stopped colletcting and uploading data
+    by end of year 2023, so a hardcoded value is needed to get any data  */
+const magicDate = "01-12-2023"
+const githubUrl = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/refs/heads/master/csse_covid_19_data/csse_covid_19_daily_reports/";
+
+// Raw Data Example
+// https://raw.githubusercontent.com/CSSEGISandData/COVID-19/refs/heads/master/csse_covid_19_data/csse_covid_19_daily_reports/01-10-2023.csv
 
 async function FetchDataFromCsv(){
     console.log("Fetching data...");
@@ -14,14 +20,15 @@ async function FetchDataFromCsv(){
             download: true,
             complete: function(results){
                 virusData = results.data;
-                console.log(virusData);
                 removeMetaData(virusData);
                 removeUndefinedElements(virusData);
-
+                
+                //console.log(virusData);
+                
                 let worldData = WorldStats.scanForData(virusData);
                 let placesData = PlacesStats.scanForData(virusData);
                 let countriesData = CountriesStats.scanForData(virusData);
-
+                
                 // console.log(countriesData);
 
                 DataStore.setWorldData(worldData);
@@ -31,14 +38,15 @@ async function FetchDataFromCsv(){
         });
 }; FetchDataFromCsv();
 
-async function getLatestDataUrl(githubUrl){
-    let date = new Date()
+async function getLatestDataUrl(githubUrl){   
+    // date === "01-12-2023" - hardcoded, see comment at the top
+    let date = new Date(magicDate)
 
     // Month formatted from 0-11
     let month = date.getUTCMonth()+1
     month = month.toString()
 
-    // Data published with 1 day delay
+    // -1, because the data is published with 1 day delay
     let day = date.getUTCDate()-1
     day = day.toString()
 
@@ -57,11 +65,13 @@ async function getLatestDataUrl(githubUrl){
     
     query = await Axios.get(query)
       .then(response => {
+        console.log(response.status)
         console.log("success")
         return query
       })
       .catch(error => {
-        console.log("failure. get previous day")
+        console.log(error);
+        console.log("failure. trying to get previous day... ")
         day = (parseInt(day)-1).toString()
         dateString = getDateString(month, day, year)
         query = getQuery(dateString)
@@ -78,10 +88,6 @@ function getQuery(dateString){
     return githubUrl + dateString + ".csv"
 }
 
-function getVirusData(){
-    return virusData;
-}
-
 function removeMetaData(data){
     data.splice(0,1);
 }
@@ -90,5 +96,3 @@ function removeMetaData(data){
 function removeUndefinedElements(array){
     array.pop();
 }
-
-module.exports.getVirusData = getVirusData;

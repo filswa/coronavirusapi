@@ -22,7 +22,7 @@ function scanForData(data){
         if (firstEl[3].toLowerCase() > secondEl[3].toLowerCase()) return 1;
         return 0;
     })
-    console.log("scan fun data: " + JSON.stringify(data));
+    // console.log("scan fun data: " + JSON.stringify(data));
 
     let j = 0;
     //let previousCountry = "";

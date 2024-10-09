@@ -28,7 +28,6 @@ function setPlacesData(data){
 }
 
 function getCountriesData(){
-	console.log(countriesData);
     return countriesData;
 }
 

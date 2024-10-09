@@ -5,7 +5,6 @@ const router = express.Router();
 
 // GET all places. Include query string filtering
 router.get('/', (req, res) => {
-    console.log(req.query);
     let country = req.query.country;
     let state = req.query.state;
     try {
@@ -59,12 +58,11 @@ function getDataFromStateQuery(data, queryParam){
 
 // GET place with a requested ID
 router.get('/:id', (req, res) => {
-    console.log(req.params.id)
     try {
         let id = parseInt(req.params.id);
         let allPlaces = DataStore.getPlacesData();
         let place = getPlaceById(allPlaces, id);
-        console.log(place);
+
         if(place == undefined){
             res.statusCode = 404;
             res.json();

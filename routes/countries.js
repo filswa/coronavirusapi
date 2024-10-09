@@ -6,7 +6,6 @@ const router = express.Router();
 // GET all countries. Include query string
 router.get('/', (req, res) => {
     let country = req.query.country;
-    console.log(req.query);
     try {
         let data = DataStore.getCountriesData();
 
@@ -31,7 +30,6 @@ function getDataFromCountryQuery(data, queryParam){
 
 // GET country with a requested ID
 router.get('/:id', (req, res) => {
-    console.log(req.params.id)
     try {
         let id = parseInt(req.params.id);
         let allCountries = DataStore.getCountriesData();
