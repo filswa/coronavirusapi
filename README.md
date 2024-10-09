@@ -1,16 +1,27 @@
 # COVID-19 statistics API
 
-Below you can find some useful information about COVID-19 statistics API.
+It was build using **node.js**, **Express**, **Axios** and **Papa Parse** library for .csv parsing.
 
-It was build using **node.js**, **Express**, **Axios** and **Papa Parse** library for .csv parsing. The data is fetched from https://github.com/CSSEGISandData/COVID-19, provided by John Hopkins University CSSE. The API is hosted on heroku. 
+The data is fetched from https://github.com/CSSEGISandData/COVID-19, provided by John Hopkins University CSSE.
 
-It is available at: https://coronavirusapi.herokuapp.com/ 
+It is currently in Legacy Mode, showing latest data from December 1st 2023, since JHU stopped publishing statistic updates.
+
+~~It is available at: https://coronavirusapi.herokuapp.com/~~
+
+It can be built and ran locally by:
+- installing reqiuired packages
+  
+  `npm install`
+- starting the server
+  
+  `npm run start`
+
 
 # endpoinds:
 The API is defined by three endpoinds:
 
 ## combined world stats
-**https://coronavirusapi.herokuapp.com/world**
+**https://localhost:3000/world**
 
 ```json
 {
@@ -26,7 +37,7 @@ The API is defined by three endpoinds:
 ```
 
 ## countries stats
-**https://coronavirusapi.herokuapp.com/countries**
+**https://localhost:3000/countries**
 
 ```json
 {
@@ -47,7 +58,7 @@ The API is defined by three endpoinds:
 
 Query parameter filtering available using country parameter
 
-example: https://coronavirusapi.herokuapp.com/countries?country=aus will return data for Austria and Australia
+example: https://localhost:3000/countries?country=aus will return data for Austria and Australia
 
 ## places data, including state/province
 **https://coronavirusapi.herokuapp.com/places**
